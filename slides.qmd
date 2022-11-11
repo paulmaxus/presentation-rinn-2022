@@ -1,0 +1,13 @@
+---
+title: "Exploiting Power BI's scheduled refresh"
+author: "Max Paulus, RI @ VU Amsterdam"
+format: revealjs
+---
+
+## Motivation
+
+- asdf
+
+## OpenAlex
+
+- asdf
