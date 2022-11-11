@@ -1,13 +1,79 @@
 ---
 title: "Exploiting Power BI's scheduled refresh"
 author: "Max Paulus, RI @ VU Amsterdam"
-format: revealjs
+format: 
+    revealjs:
+            code-overflow: scroll
 ---
 
 ## Motivation
 
-- asdfasdf
+- Power BI as visualisation tool (part of Microsoft license)
+- Workflow:
+    - Python scripts to extract/transform data (ET of ETL)
+    - Output as .csv table, used as PBI data source
+- (semi-)automised approach
 
-## OpenAlex
+## Workflow managers (fully automised)
 
-- asdf
+- e.g. Apache Airflow (scheduler, webserver, workers, postgres)
+- [image of GUI]
+- Azure Data Factory & Blob (costs?)
+
+## Overkill!
+
+- do we need a database?
+- do we need a webserver?
+
+## Scheduled refresh
+
+- [image of the setting]
+
+
+## The data source: OpenAlex
+
+- overview of data types
+
+## API
+
+- simplify: groupby
+- or: pagination
+
+## In Power BI
+
+```{.dax}
+GetOAStats = (year as text, rors as list) =>
+        let
+            BaseUrl = "https://api.openalex.org/works",
+            vOptions = [Query=[filter="authorships.institutions.ror:" & Text.Combine(rors, "|") & ",publication_year:" & year, group_by="oa_status"]],
+            Source = Json.Document(Web.Contents(BaseUrl, vOptions)),
+            Table = Table.FromRecords({Source})
+        in
+            Table,
+```
+
+## The data source: Overton
+
+- slow, solution: history of previous years
+
+## In Power BI
+
+- source1 (history): .csv (*https://vunl.sharepoint.com/sites/...*)
+- source2 (current year): API 
+
+```{.dax}
+Source = Table.Combine({overton_hist, overton_current}),
+#"Removed Duplicates" = Table.Distinct(Source, {"policy_document_id"}),
+```
+
+## Downsides
+
+- no storage
+- no Python
+
+## Demo
+
+- [embed PBI]
+- alternative: link to .pdf on gh
+
+## Questions?
