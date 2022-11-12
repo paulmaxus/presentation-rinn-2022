@@ -30,13 +30,14 @@ format:
 - [image of the setting]
 
 
-## The data source: OpenAlex
+## Data source: OpenAlex
 
-- overview of data types
+[entities: https://i.imgur.com/FXTji65.png]
+(link or download)
 
-## API
+## API specifics
 
-- simplify: groupby
+- group_by parameter
 - or: pagination
 
 ## In Power BI
@@ -52,9 +53,18 @@ GetOAStats = (year as text, rors as list) =>
             Table,
 ```
 
-## The data source: Overton
+## In Power BI
 
-- slow, solution: history of previous years
+[screenshot of oa_status]
+
+## In Power BI
+
+[screenshot of concepts filter]
+
+## Data source: Overton
+
+- rate-limited, no aggregation 
+- solution: history of previous years
 
 ## In Power BI
 
@@ -68,8 +78,9 @@ Source = Table.Combine({overton_hist, overton_current}),
 
 ## Downsides
 
-- no storage
-- no Python
+- no storage, i.e. not feasible for larger datasets
+- scheduled refresh not combinable with Python scripts (only using gateway)
+- however, public reports are also not combinable with Python scripts
 
 ## Demo
 
