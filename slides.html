@@ -7,7 +7,7 @@
 <link href="slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.1.251">
+  <meta name="generator" content="quarto-1.2.269">
 
   <meta name="author" content="Max Paulus, RI @ VU Amsterdam">
   <title>Exploiting Power BI’s scheduled refresh</title>
@@ -387,44 +387,44 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="center">
+<section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Exploiting Power BI’s scheduled refresh</h1>
-  <p class="author">Max Paulus, RI @ VU Amsterdam</p>
-</section>
 
-<section id="motivation" class="slide level2">
-<h2>Motivation</h2>
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Max Paulus, RI @ VU Amsterdam 
+</div>
+</div>
+</div>
+
+</section>
+<section id="our-semi-automised-workflow" class="slide level2">
+<h2>Our (semi-)automised workflow</h2>
 <ul>
-<li>Power BI as visualisation tool (part of Microsoft license)</li>
-<li>Workflow:
-<ul>
-<li>Python scripts to extract/transform data (ET of ETL)</li>
-<li>Output as .csv table, used as PBI data source</li>
-</ul></li>
-<li>(semi-)automised approach</li>
+<li class="fragment">source: REST API</li>
+<li class="fragment">writing Python scripts to extract/transform data</li>
+<li class="fragment">output as (related) <em>.csv</em> tables</li>
+<li class="fragment">load into Power BI as data source</li>
+<li class="fragment">create visuals</li>
 </ul>
 </section>
-<section id="workflow-managers-fully-automised" class="slide level2">
-<h2>Workflow managers (fully automised)</h2>
+<section id="a-fully-automised-workflow" class="slide level2">
+<h2>A fully automised workflow</h2>
+<p>Using workflow managers:</p>
 <ul>
-<li>e.g.&nbsp;Apache Airflow (scheduler, webserver, workers, postgres)</li>
-<li>[image of GUI]</li>
-<li>Azure Data Factory &amp; Blob (costs?)</li>
+<li class="fragment">e.g.&nbsp;Apache Airflow <img data-src="images/graph.png"></li>
 </ul>
+<!--- Azure Data Factory & Blob (costs?) -->
 </section>
 <section id="overkill" class="slide level2">
 <h2>Overkill!</h2>
-<ul>
-<li>do we need a database?</li>
-<li>do we need a webserver?</li>
-</ul>
-</section>
+
+<img data-src="images/arch-diag-basic.png" class="r-stretch"></section>
 <section id="scheduled-refresh" class="slide level2">
 <h2>Scheduled refresh</h2>
-<ul>
-<li>[image of the setting]</li>
-</ul>
-</section>
+
+<img data-src="images/refresh.png" class="r-stretch"></section>
 <section id="data-source-openalex" class="slide level2">
 <h2>Data source: OpenAlex</h2>
 <p>[entities: https://i.imgur.com/FXTji65.png] (link or download)</p>
@@ -432,8 +432,8 @@
 <section id="api-specifics" class="slide level2">
 <h2>API specifics</h2>
 <ul>
-<li>group_by parameter</li>
-<li>or: pagination</li>
+<li class="fragment">group_by parameter</li>
+<li class="fragment">or: pagination</li>
 </ul>
 </section>
 <section id="in-power-bi" class="slide level2">
@@ -458,15 +458,15 @@
 <section id="data-source-overton" class="slide level2">
 <h2>Data source: Overton</h2>
 <ul>
-<li>rate-limited, no aggregation</li>
-<li>solution: history of previous years</li>
+<li class="fragment">rate-limited, no aggregation</li>
+<li class="fragment">solution: history of previous years</li>
 </ul>
 </section>
 <section id="in-power-bi-3" class="slide level2">
 <h2>In Power BI</h2>
 <ul>
-<li>source1 (history): .csv (<em>https://vunl.sharepoint.com/sites/…</em>)</li>
-<li>source2 (current year): API</li>
+<li class="fragment">source1 (history): .csv (<em>https://vunl.sharepoint.com/sites/…</em>)</li>
+<li class="fragment">source2 (current year): API</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource dax number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>Source = Table.Combine({overton_hist, overton_current}),</span>
 <span id="cb2-2"><a href="#cb2-2"></a>#"Removed Duplicates" = Table.Distinct(Source, {"policy_document_id"}),</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -474,21 +474,22 @@
 <section id="downsides" class="slide level2">
 <h2>Downsides</h2>
 <ul>
-<li>no storage, i.e.&nbsp;not feasible for larger datasets</li>
-<li>scheduled refresh not combinable with Python scripts (only using gateway)</li>
-<li>however, public reports are also not combinable with Python scripts</li>
+<li class="fragment">no storage, i.e.&nbsp;not feasible for larger datasets</li>
+<li class="fragment">scheduled refresh not combinable with Python scripts (only using gateway)</li>
+<li class="fragment">however, public reports are also not combinable with Python scripts</li>
 </ul>
 </section>
 <section id="demo" class="slide level2">
 <h2>Demo</h2>
 <ul>
-<li>[embed PBI]</li>
-<li>alternative: link to .pdf on gh</li>
+<li class="fragment">[embed PBI]</li>
+<li class="fragment">alternative: link to .pdf on gh</li>
 </ul>
 </section>
 <section id="questions" class="slide level2">
 <h2>Questions?</h2>
-<div class="footer footer-default">
+
+<img src="images/VU_logo_RGB-01.png" class="slide-logo r-stretch"><div class="footer footer-default">
 
 </div>
 </section>
@@ -741,7 +742,24 @@
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
         button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
         setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
           button.setAttribute("title", currentTitle);
           button.classList.remove('code-copy-button-checked');
         }, 1000);
@@ -779,24 +797,42 @@
           return note.innerHTML;
         });
       }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
       var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
       for (var i=0; i<bibliorefs.length; i++) {
         const ref = bibliorefs[i];
-        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-        tippyHover(ref, function() {
-          var popup = window.document.createElement('div');
-          cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
           });
-          return popup.innerHTML;
-        });
+        }
       }
     });
     </script>
