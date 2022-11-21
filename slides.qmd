@@ -4,30 +4,33 @@ author: "Max Paulus, RI @ VU Amsterdam"
 format: 
     revealjs:
             code-overflow: scroll
+            logo: images/VU_logo_RGB-01.png
+            incremental: true
 ---
 
-## Motivation
+## Our (semi-)automised workflow
 
-- Power BI as visualisation tool (part of Microsoft license)
-- Workflow:
-    - Python scripts to extract/transform data (ET of ETL)
-    - Output as .csv table, used as PBI data source
-- (semi-)automised approach
+- source: REST API
+- writing Python scripts to extract/transform data
+- output as (related) *.csv* tables
+- load into Power BI as data source
+- create visuals
 
-## Workflow managers (fully automised)
+## A fully automised workflow
 
-- e.g. Apache Airflow (scheduler, webserver, workers, postgres)
-- [image of GUI]
-- Azure Data Factory & Blob (costs?)
+Using workflow managers:
+
+- e.g. Apache Airflow ![](images/graph.png)
+
+<!--- Azure Data Factory & Blob (costs?) -->
 
 ## Overkill!
 
-- do we need a database?
-- do we need a webserver?
+![](images/arch-diag-basic.png)
 
 ## Scheduled refresh
 
-- [image of the setting]
+![](images/refresh.png)
 
 
 ## The data source: OpenAlex
