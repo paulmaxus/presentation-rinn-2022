@@ -412,11 +412,10 @@ Max Paulus, RI @ VU Amsterdam
 <section id="a-fully-automised-workflow" class="slide level2">
 <h2>A fully automised workflow</h2>
 <p>Using workflow managers:</p>
-<ul>
-<li class="fragment">e.g.&nbsp;Apache Airflow <img data-src="images/graph.png"></li>
-</ul>
+<p>e.g.&nbsp;Apache Airflow</p>
+
 <!--- Azure Data Factory & Blob (costs?) -->
-</section>
+<img data-src="images/graph.png" class="r-stretch"></section>
 <section id="overkill" class="slide level2">
 <h2>Overkill!</h2>
 
@@ -427,13 +426,19 @@ Max Paulus, RI @ VU Amsterdam
 <img data-src="images/refresh.png" class="r-stretch"></section>
 <section id="data-source-openalex" class="slide level2">
 <h2>Data source: OpenAlex</h2>
-<p>[entities: https://i.imgur.com/FXTji65.png] (link or download)</p>
+<p><img data-src="images/openalex_entities.png"> <!--- entities: https://i.imgur.com/FXTji65.png --></p>
 </section>
 <section id="api-specifics" class="slide level2">
 <h2>API specifics</h2>
 <ul>
-<li class="fragment">group_by parameter</li>
-<li class="fragment">or: pagination</li>
+<li class="fragment">filters
+<ul>
+<li class="fragment">e.g.&nbsp;ror, concepts, …</li>
+</ul></li>
+<li class="fragment">group_by parameter
+<ul>
+<li class="fragment">e.g., <em>oa_status</em>, <em>publication_year</em>, …</li>
+</ul></li>
 </ul>
 </section>
 <section id="in-power-bi" class="slide level2">
@@ -449,12 +454,12 @@ Max Paulus, RI @ VU Amsterdam
 </section>
 <section id="in-power-bi-1" class="slide level2">
 <h2>In Power BI</h2>
-<p>[screenshot of oa_status]</p>
-</section>
+
+<img data-src="images/oa_status.png" class="r-stretch"></section>
 <section id="in-power-bi-2" class="slide level2">
 <h2>In Power BI</h2>
-<p>[screenshot of concepts filter]</p>
-</section>
+
+<img data-src="images/data_model.png" class="r-stretch"></section>
 <section id="data-source-overton" class="slide level2">
 <h2>Data source: Overton</h2>
 <ul>
@@ -481,10 +486,8 @@ Max Paulus, RI @ VU Amsterdam
 </section>
 <section id="demo" class="slide level2">
 <h2>Demo</h2>
-<ul>
-<li class="fragment">[embed PBI]</li>
-<li class="fragment">alternative: link to .pdf on gh</li>
-</ul>
+<iframe title="oa_daily" width="1024" height="1060" src="https://app.powerbi.com/view?r=eyJrIjoiODBhY2NjNDAtZDI5ZC00NWU2LTg0NDAtZDgzNGQ4NDk3MDM1IiwidCI6IjQ2MmE5YzljLTJkYTYtNGJmYi1iMzE4LTBmODMwNDNmZTQ5YiIsImMiOjh9&amp;pageName=ReportSection4805b74ddd2ca2701890" frameborder="0" allowfullscreen="true">
+</iframe>
 </section>
 <section id="questions" class="slide level2">
 <h2>Questions?</h2>
