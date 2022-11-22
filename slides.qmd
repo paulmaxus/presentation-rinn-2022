@@ -20,7 +20,9 @@ format:
 
 Using workflow managers:
 
-- e.g. Apache Airflow ![](images/graph.png)
+e.g. Apache Airflow 
+
+![](images/graph.png)
 
 <!--- Azure Data Factory & Blob (costs?) -->
 
@@ -35,13 +37,15 @@ Using workflow managers:
 
 ## Data source: OpenAlex
 
-[entities: https://i.imgur.com/FXTji65.png]
-(link or download)
+![](images/openalex_entities.png)
+<!--- entities: https://i.imgur.com/FXTji65.png -->
 
 ## API specifics
 
+- filters
+    - e.g. ror, concepts, ...
 - group_by parameter
-- or: pagination
+    - e.g., *oa_status*, *publication_year*, ...
 
 ## In Power BI
 
@@ -58,11 +62,11 @@ GetOAStats = (year as text, rors as list) =>
 
 ## In Power BI
 
-[screenshot of oa_status]
+![](images/oa_status.png)
 
 ## In Power BI
 
-[screenshot of concepts filter]
+![](images/data_model.png)
 
 ## Data source: Overton
 
@@ -87,7 +91,6 @@ Source = Table.Combine({overton_hist, overton_current}),
 
 ## Demo
 
-- [embed PBI]
-- alternative: link to .pdf on gh
+<iframe title="oa_daily" width="1024" height="1060" src="https://app.powerbi.com/view?r=eyJrIjoiODBhY2NjNDAtZDI5ZC00NWU2LTg0NDAtZDgzNGQ4NDk3MDM1IiwidCI6IjQ2MmE5YzljLTJkYTYtNGJmYi1iMzE4LTBmODMwNDNmZTQ5YiIsImMiOjh9&pageName=ReportSection4805b74ddd2ca2701890" frameborder="0" allowFullScreen="true"></iframe>
 
 ## Questions?
