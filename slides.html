@@ -9,7 +9,7 @@
 <link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.269">
 
-  <meta name="author" content="Max Paulus, RI @ VU Amsterdam">
+  <meta name="author" content="Max Paulus, RI@VU">
   <title>Exploiting Power BI’s scheduled refresh</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -393,7 +393,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Max Paulus, RI @ VU Amsterdam 
+Max Paulus, RI@VU 
 </div>
 </div>
 </div>
@@ -460,28 +460,31 @@ Max Paulus, RI @ VU Amsterdam
 <h2>In Power BI</h2>
 
 <img data-src="images/data_model.png" class="r-stretch"></section>
+<section id="issues-rate-limits" class="slide level2">
+<h2>Issues: rate limits</h2>
+<p>Solution: snapshots</p>
+</section>
 <section id="data-source-overton" class="slide level2">
 <h2>Data source: Overton</h2>
-<ul>
-<li class="fragment">rate-limited, no aggregation</li>
-<li class="fragment">solution: history of previous years</li>
-</ul>
-</section>
+
+<img data-src="images/overton.png" class="r-stretch"></section>
 <section id="in-power-bi-3" class="slide level2">
 <h2>In Power BI</h2>
 <ul>
-<li class="fragment">source1 (history): .csv (<em>https://vunl.sharepoint.com/sites/…</em>)</li>
-<li class="fragment">source2 (current year): API</li>
+<li class="fragment"><p>source1 (history): snapshot of previous years (<em>https://vunl.sharepoint.com/sites/…</em>)</p></li>
+<li class="fragment"><p>source2 (current): policy documents from current year (API)</p></li>
 </ul>
+<div class="fragment">
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource dax number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>Source = Table.Combine({overton_hist, overton_current}),</span>
 <span id="cb2-2"><a href="#cb2-2"></a>#"Removed Duplicates" = Table.Distinct(Source, {"policy_document_id"}),</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="downsides" class="slide level2">
 <h2>Downsides</h2>
 <ul>
-<li class="fragment">no storage, i.e.&nbsp;not feasible for larger datasets</li>
-<li class="fragment">scheduled refresh not combinable with Python scripts (only using gateway)</li>
-<li class="fragment">however, public reports are also not combinable with Python scripts</li>
+<li class="fragment">inefficient (data is overwritten every time)</li>
+<li class="fragment">Python scripts only available when using a gateway</li>
+<li class="fragment">however: public reports can’t run Python scripts anyways</li>
 </ul>
 </section>
 <section id="demo" class="slide level2">
