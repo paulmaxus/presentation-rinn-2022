@@ -1,11 +1,12 @@
 ---
 title: "Exploiting Power BI's scheduled refresh"
-author: "Max Paulus, RI @ VU Amsterdam"
+author: "Max Paulus, RI@VU"
 format: 
     revealjs:
             code-overflow: scroll
             logo: images/VU_logo_RGB-01.png
             incremental: true
+            theme: default
 ---
 
 ## Our (semi-)automised workflow
@@ -68,15 +69,21 @@ GetOAStats = (year as text, rors as list) =>
 
 ![](images/data_model.png)
 
+## Issues: rate limits
+
+Solution: snapshots
+
 ## Data source: Overton
 
-- rate-limited, no aggregation 
-- solution: history of previous years
+![](images/overton.png)
 
 ## In Power BI
 
-- source1 (history): .csv (*https://vunl.sharepoint.com/sites/...*)
-- source2 (current year): API 
+- source1 (history): snapshot of previous years (*https://vunl.sharepoint.com/sites/...*)
+
+- source2 (current): policy documents from current year (API)
+
+. . .
 
 ```{.dax}
 Source = Table.Combine({overton_hist, overton_current}),
@@ -85,9 +92,9 @@ Source = Table.Combine({overton_hist, overton_current}),
 
 ## Downsides
 
-- no storage, i.e. not feasible for larger datasets
-- scheduled refresh not combinable with Python scripts (only using gateway)
-- however, public reports are also not combinable with Python scripts
+- inefficient (data is overwritten every time)
+- Python scripts only available when using a gateway
+- however: public reports can't run Python scripts anyways
 
 ## Demo
 
