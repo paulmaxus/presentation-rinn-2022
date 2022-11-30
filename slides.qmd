@@ -3,10 +3,10 @@ title: "Exploiting Power BI's scheduled refresh"
 author: "Max Paulus, RI@VU"
 format: 
     revealjs:
-            code-overflow: scroll
-            logo: images/VU_logo_RGB-01.png
-            incremental: true
-            theme: default
+        code-overflow: scroll
+        logo: images/VU_logo_RGB-01.png
+        incremental: true
+        theme: default
 ---
 
 ## Our (semi-)automised workflow
@@ -20,6 +20,7 @@ format:
 -->
 
 ```{mermaid}
+%%| fig-responsive: false
 flowchart TD
   A1[(Data)] -. API .-> B(extract/transform)
   A2[(Data)] -.-> B
