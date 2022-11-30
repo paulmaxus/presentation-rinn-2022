@@ -382,6 +382,9 @@
       margin-right: 0; 
     }
   </style>
+  <script src="slides_files/libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="slides_files/libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="slides_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -401,48 +404,67 @@ Max Paulus, RI@VU
 </section>
 <section id="our-semi-automised-workflow" class="slide level2">
 <h2>Our (semi-)automised workflow</h2>
-<ul>
-<li class="fragment">source: REST API</li>
-<li class="fragment">writing Python scripts to extract/transform data</li>
-<li class="fragment">output as (related) <em>.csv</em> tables</li>
-<li class="fragment">load into Power BI as data source</li>
-<li class="fragment">create visuals</li>
-</ul>
+
+<!---
+- source: REST API
+- writing Python scripts to extract/transform data
+- output as (related) *.csv* tables
+- load into Power BI as data source
+- create visuals
+-->
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">flowchart TD
+  A1[(Data)] -. API .-&gt; B(extract/transform)
+  A2[(Data)] -.-&gt; B
+  A3[(Data)] -.-&gt; B
+  B --&gt; C(.csv)
+  C -. Query .- D(Data model)
+  subgraph Power BI
+  D --&gt; E(Visualisations)
+  end
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
 </section>
 <section id="a-fully-automised-workflow" class="slide level2">
 <h2>A fully automised workflow</h2>
-<p>Using workflow managers:</p>
-<p>e.g.&nbsp;Apache Airflow</p>
+<p>e.g., Apache Airflow, Prefect etc.</p>
 
-<!--- Azure Data Factory & Blob (costs?) -->
 <img data-src="images/graph.png" class="r-stretch"></section>
-<section id="overkill" class="slide level2">
-<h2>Overkill!</h2>
+<section class="slide level2">
+
 
 <img data-src="images/arch-diag-basic.png" class="r-stretch"></section>
 <section id="scheduled-refresh" class="slide level2">
 <h2>Scheduled refresh</h2>
 
 <img data-src="images/refresh.png" class="r-stretch"></section>
-<section id="data-source-openalex" class="slide level2">
-<h2>Data source: OpenAlex</h2>
+<section id="data-source-1-openalex" class="slide level2">
+<h2>Data source 1: OpenAlex</h2>
 <p><img data-src="images/openalex_entities.png"> <!--- entities: https://i.imgur.com/FXTji65.png --></p>
 </section>
-<section id="api-specifics" class="slide level2">
-<h2>API specifics</h2>
+<section id="works-endpoint" class="slide level2">
+<h2><em>works</em> endpoint</h2>
+<p>parameters:</p>
 <ul>
-<li class="fragment">filters
-<ul>
-<li class="fragment">e.g.&nbsp;ror, concepts, …</li>
-</ul></li>
-<li class="fragment">group_by parameter
-<ul>
-<li class="fragment">e.g., <em>oa_status</em>, <em>publication_year</em>, …</li>
-</ul></li>
+<li class="fragment">filters: <em>ror</em>, <em>concept.id</em>, …</li>
+<li class="fragment">group_by: <em>oa_status</em>, <em>publication_year</em>, …</li>
 </ul>
 </section>
-<section id="in-power-bi" class="slide level2">
-<h2>In Power BI</h2>
+<section class="slide level2">
+
+
+<img data-src="images/oa_status.png" class="r-stretch"></section>
+<section id="dax" class="slide level2">
+<h2>DAX</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource dax number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>GetOAStats = (year as text, rors as list) =&gt;</span>
 <span id="cb1-2"><a href="#cb1-2"></a>        let</span>
 <span id="cb1-3"><a href="#cb1-3"></a>            BaseUrl = "https://api.openalex.org/works",</span>
@@ -452,24 +474,25 @@ Max Paulus, RI@VU
 <span id="cb1-7"><a href="#cb1-7"></a>        in</span>
 <span id="cb1-8"><a href="#cb1-8"></a>            Table,</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="in-power-bi-1" class="slide level2">
-<h2>In Power BI</h2>
-
-<img data-src="images/oa_status.png" class="r-stretch"></section>
-<section id="in-power-bi-2" class="slide level2">
-<h2>In Power BI</h2>
+<section id="data-model" class="slide level2">
+<h2>Data model</h2>
 
 <img data-src="images/data_model.png" class="r-stretch"></section>
-<section id="issues-rate-limits" class="slide level2">
-<h2>Issues: rate limits</h2>
-<p>Solution: snapshots</p>
+<section id="issues" class="slide level2">
+<h2>Issues</h2>
+<ul>
+<li class="fragment">rate limits
+<ul>
+<li class="fragment">possible solution: <strong>snapshots</strong></li>
+</ul></li>
+</ul>
 </section>
-<section id="data-source-overton" class="slide level2">
-<h2>Data source: Overton</h2>
+<section id="data-source-2-overton" class="slide level2">
+<h2>Data source 2: Overton</h2>
 
 <img data-src="images/overton.png" class="r-stretch"></section>
-<section id="in-power-bi-3" class="slide level2">
-<h2>In Power BI</h2>
+<section id="dax-1" class="slide level2">
+<h2>DAX</h2>
 <ul>
 <li class="fragment"><p>source1 (history): snapshot of previous years (<em>https://vunl.sharepoint.com/sites/…</em>)</p></li>
 <li class="fragment"><p>source2 (current): policy documents from current year (API)</p></li>
@@ -485,6 +508,15 @@ Max Paulus, RI@VU
 <li class="fragment">inefficient (data is overwritten every time)</li>
 <li class="fragment">Python scripts only available when using a gateway</li>
 <li class="fragment">however: public reports can’t run Python scripts anyways</li>
+<li class="fragment">https://realpython.com/power-bi-python/</li>
+</ul>
+</section>
+<section id="open-ri" class="slide level2">
+<h2>Open RI</h2>
+<ul>
+<li class="fragment">sharing ideas, methods, code</li>
+<li class="fragment">sharing infrastructure, e.g.&nbsp;Airflow instance</li>
+<li class="fragment">sharing data</li>
 </ul>
 </section>
 <section id="demo" class="slide level2">
