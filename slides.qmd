@@ -11,23 +11,33 @@ format:
 
 ## Our (semi-)automised workflow
 
+<!---
 - source: REST API
 - writing Python scripts to extract/transform data
 - output as (related) *.csv* tables
 - load into Power BI as data source
 - create visuals
+-->
+
+```{mermaid}
+flowchart TD
+  A1[(Data)] -. API .-> B(extract/transform)
+  A2[(Data)] -.-> B
+  A3[(Data)] -.-> B
+  B --> C(.csv)
+  C -. Query .- D(Data model)
+  subgraph Power BI
+  D --> E(Visualisations)
+  end
+```
 
 ## A fully automised workflow
 
-Using workflow managers:
-
-e.g. Apache Airflow 
+e.g., Apache Airflow, Prefect etc.
 
 ![](images/graph.png)
 
-<!--- Azure Data Factory & Blob (costs?) -->
-
-## Overkill!
+---
 
 ![](images/arch-diag-basic.png)
 
@@ -36,19 +46,23 @@ e.g. Apache Airflow
 ![](images/refresh.png)
 
 
-## Data source: OpenAlex
+## Data source 1: OpenAlex
 
 ![](images/openalex_entities.png)
 <!--- entities: https://i.imgur.com/FXTji65.png -->
 
-## API specifics
+## *works* endpoint
 
-- filters
-    - e.g. ror, concepts, ...
-- group_by parameter
-    - e.g., *oa_status*, *publication_year*, ...
+parameters:
 
-## In Power BI
+- filters: *ror*, *concept.id*, ...
+- group_by: *oa_status*, *publication_year*, ...
+
+---
+
+![](images/oa_status.png)
+
+## DAX
 
 ```{.dax}
 GetOAStats = (year as text, rors as list) =>
@@ -61,23 +75,20 @@ GetOAStats = (year as text, rors as list) =>
             Table,
 ```
 
-## In Power BI
-
-![](images/oa_status.png)
-
-## In Power BI
+## Data model
 
 ![](images/data_model.png)
 
-## Issues: rate limits
+## Issues
 
-Solution: snapshots
+* rate limits
+    * possible solution: __snapshots__
 
-## Data source: Overton
+## Data source 2: Overton
 
 ![](images/overton.png)
 
-## In Power BI
+## DAX
 
 - source1 (history): snapshot of previous years (*https://vunl.sharepoint.com/sites/...*)
 
@@ -95,6 +106,13 @@ Source = Table.Combine({overton_hist, overton_current}),
 - inefficient (data is overwritten every time)
 - Python scripts only available when using a gateway
 - however: public reports can't run Python scripts anyways
+- https://realpython.com/power-bi-python/
+
+## Open RI
+
+- sharing ideas, methods, code
+- sharing infrastructure, e.g. Airflow instance
+- sharing data
 
 ## Demo
 
