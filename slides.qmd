@@ -7,20 +7,18 @@ format:
         logo: images/VU_logo_RGB-01.png
         incremental: true
         theme: default
+        pdf-separate-fragments: true
 ---
 
-## Our (semi-)automised workflow
+## Our (semi-)automised workflow  {visibility="hidden"}
 
-<!---
-- source: REST API
-- writing Python scripts to extract/transform data
-- output as (related) *.csv* tables
-- load into Power BI as data source
-- create visuals
+<!-- 
+Mermaid rendering cuts off some text.
+We can render it externally and load the image:
+https://mermaid.live
 -->
 
 ```{mermaid}
-%%| fig-responsive: false
 flowchart TD
   A1[(Data)] -. API .-> B(extract/transform)
   A2[(Data)] -.-> B
@@ -32,6 +30,10 @@ flowchart TD
   end
 ```
 
+## Our (semi-)automised workflow
+
+![](images/workflow.png)
+
 ## A fully automised workflow
 
 e.g., Apache Airflow, Prefect etc.
@@ -40,7 +42,7 @@ e.g., Apache Airflow, Prefect etc.
 
 ---
 
-![](images/arch-diag-basic.png)
+![architecture](images/arch-diag-basic.png)
 
 ## Scheduled refresh
 
