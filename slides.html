@@ -402,38 +402,11 @@ Max Paulus, RI@VU
 </div>
 
 </section>
-<section id="our-semi-automised-workflow" class="slide level2">
+
+<section id="our-semi-automised-workflow-1" class="slide level2">
 <h2>Our (semi-)automised workflow</h2>
 
-<!---
-- source: REST API
-- writing Python scripts to extract/transform data
-- output as (related) *.csv* tables
-- load into Power BI as data source
-- create visuals
--->
-<div class="cell" data-reveal="true" data-fig-responsive="false">
-<div class="cell-output-display">
-<div>
-<p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">flowchart TD
-  A1[(Data)] -. API .-&gt; B(extract/transform)
-  A2[(Data)] -.-&gt; B
-  A3[(Data)] -.-&gt; B
-  B --&gt; C(.csv)
-  C -. Query .- D(Data model)
-  subgraph Power BI
-  D --&gt; E(Visualisations)
-  end
-</pre>
-<div id="mermaid-tooltip-1" class="mermaidTooltip">
-
-</div>
-<p></p>
-</div>
-</div>
-</div>
-</section>
+<img data-src="images/workflow.png" class="r-stretch"></section>
 <section id="a-fully-automised-workflow" class="slide level2">
 <h2>A fully automised workflow</h2>
 <p>e.g., Apache Airflow, Prefect etc.</p>
@@ -442,7 +415,7 @@ Max Paulus, RI@VU
 <section class="slide level2">
 
 
-<img data-src="images/arch-diag-basic.png" class="r-stretch"></section>
+<img data-src="images/arch-diag-basic.png" class="r-stretch quarto-figure-center"><p class="caption">architecture</p></section>
 <section id="scheduled-refresh" class="slide level2">
 <h2>Scheduled refresh</h2>
 
@@ -558,7 +531,7 @@ Max Paulus, RI@VU
 'controlsAuto': true,
 'previewLinksAuto': false,
 'smaller': false,
-'pdfSeparateFragments': false,
+'pdfSeparateFragments': true,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
