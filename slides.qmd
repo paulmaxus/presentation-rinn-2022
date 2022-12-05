@@ -10,6 +10,13 @@ format:
         pdf-separate-fragments: true
 ---
 
+## Three design principles
+
+- **flexibility**: make dashboards as informative and interactive as possible so that users can explore the data and draw their own conclusions
+- **purposeful design**: at the same time, select and taylor dataset and visuals to target a user's research questions
+- **interpretation**: provide enough information to make the data interpretable with respect to those RQs
+
+
 ## Our (semi-)automised workflow  {visibility="hidden"}
 
 <!-- 
@@ -36,7 +43,7 @@ flowchart TD
 
 ## A fully automised workflow
 
-e.g., Apache Airflow, Prefect etc.
+*Apache Airflow, Prefect* etc.
 
 ![](images/graph.png)
 
@@ -44,7 +51,7 @@ e.g., Apache Airflow, Prefect etc.
 
 ![architecture](images/arch-diag-basic.png)
 
-## Scheduled refresh
+## A Power BI alternative
 
 ![](images/refresh.png)
 
@@ -54,7 +61,7 @@ e.g., Apache Airflow, Prefect etc.
 ![](images/openalex_entities.png)
 <!--- entities: https://i.imgur.com/FXTji65.png -->
 
-## *works* endpoint
+## API: *works* endpoint
 
 parameters:
 
@@ -82,14 +89,15 @@ GetOAStats = (year as text, rors as list) =>
 
 ![](images/data_model.png)
 
-## Issues
-
-* rate limits
-    * possible solution: __snapshots__
-
 ## Data source 2: Overton
 
 ![](images/overton.png)
+
+---
+
+issue: rate limits
+
+- possible solution: __snapshots__
 
 ## DAX
 
@@ -103,6 +111,12 @@ GetOAStats = (year as text, rors as list) =>
 Source = Table.Combine({overton_hist, overton_current}),
 #"Removed Duplicates" = Table.Distinct(Source, {"policy_document_id"}),
 ```
+
+## Flexible & Customisable
+
+- Data model provides many ways to explore the dataset (flexibility)
+- We can create custom dashboards linked to the same underlying dataset (purposeful design)
+- ![](images/pbi_lineage.png)
 
 ## Downsides
 
