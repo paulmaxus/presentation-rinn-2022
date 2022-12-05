@@ -402,6 +402,14 @@ Max Paulus, RI@VU
 </div>
 
 </section>
+<section id="three-design-principles" class="slide level2">
+<h2>Three design principles</h2>
+<ul>
+<li class="fragment"><strong>flexibility</strong>: make dashboards as informative and interactive as possible so that users can explore the data and draw their own conclusions</li>
+<li class="fragment"><strong>purposeful design</strong>: at the same time, select and taylor dataset and visuals to target a user’s research questions</li>
+<li class="fragment"><strong>interpretation</strong>: provide enough information to make the data interpretable with respect to those RQs</li>
+</ul>
+</section>
 
 <section id="our-semi-automised-workflow-1" class="slide level2">
 <h2>Our (semi-)automised workflow</h2>
@@ -409,23 +417,23 @@ Max Paulus, RI@VU
 <img data-src="images/workflow.png" class="r-stretch"></section>
 <section id="a-fully-automised-workflow" class="slide level2">
 <h2>A fully automised workflow</h2>
-<p>e.g., Apache Airflow, Prefect etc.</p>
+<p><em>Apache Airflow, Prefect</em> etc.</p>
 
 <img data-src="images/graph.png" class="r-stretch"></section>
 <section class="slide level2">
 
 
 <img data-src="images/arch-diag-basic.png" class="r-stretch quarto-figure-center"><p class="caption">architecture</p></section>
-<section id="scheduled-refresh" class="slide level2">
-<h2>Scheduled refresh</h2>
+<section id="a-power-bi-alternative" class="slide level2">
+<h2>A Power BI alternative</h2>
 
 <img data-src="images/refresh.png" class="r-stretch"></section>
 <section id="data-source-1-openalex" class="slide level2">
 <h2>Data source 1: OpenAlex</h2>
 <p><img data-src="images/openalex_entities.png"> <!--- entities: https://i.imgur.com/FXTji65.png --></p>
 </section>
-<section id="works-endpoint" class="slide level2">
-<h2><em>works</em> endpoint</h2>
+<section id="api-works-endpoint" class="slide level2">
+<h2>API: <em>works</em> endpoint</h2>
 <p>parameters:</p>
 <ul>
 <li class="fragment">filters: <em>ror</em>, <em>concept.id</em>, …</li>
@@ -451,19 +459,17 @@ Max Paulus, RI@VU
 <h2>Data model</h2>
 
 <img data-src="images/data_model.png" class="r-stretch"></section>
-<section id="issues" class="slide level2">
-<h2>Issues</h2>
-<ul>
-<li class="fragment">rate limits
-<ul>
-<li class="fragment">possible solution: <strong>snapshots</strong></li>
-</ul></li>
-</ul>
-</section>
 <section id="data-source-2-overton" class="slide level2">
 <h2>Data source 2: Overton</h2>
 
 <img data-src="images/overton.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<p>issue: rate limits</p>
+<ul>
+<li class="fragment">possible solution: <strong>snapshots</strong></li>
+</ul>
+</section>
 <section id="dax-1" class="slide level2">
 <h2>DAX</h2>
 <ul>
@@ -474,6 +480,14 @@ Max Paulus, RI@VU
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource dax number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>Source = Table.Combine({overton_hist, overton_current}),</span>
 <span id="cb2-2"><a href="#cb2-2"></a>#"Removed Duplicates" = Table.Distinct(Source, {"policy_document_id"}),</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="flexible-customisable" class="slide level2">
+<h2>Flexible &amp; Customisable</h2>
+<ul>
+<li class="fragment">Data model provides many ways to explore the dataset (flexibility)</li>
+<li class="fragment">We can create custom dashboards linked to the same underlying dataset (purposeful design)</li>
+<li class="fragment"><img data-src="images/pbi_lineage.png"></li>
+</ul>
 </section>
 <section id="downsides" class="slide level2">
 <h2>Downsides</h2>
