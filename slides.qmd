@@ -13,7 +13,7 @@ format:
 ## Three design principles
 
 - **flexibility**: make dashboards as informative and interactive as possible so that users can explore the data and draw their own conclusions
-- **purposeful design**: at the same time, select and taylor dataset and visuals to target a user's research questions
+- **purposeful design**: at the same time, select and tailor dataset and visuals to target a user's research questions
 - **interpretation**: provide enough information to make the data interpretable with respect to those RQs
 
 
@@ -114,9 +114,8 @@ Source = Table.Combine({overton_hist, overton_current}),
 
 ## Flexible & Customisable
 
-- Data model provides many ways to explore the dataset (flexibility)
-- We can create custom dashboards linked to the same underlying dataset (purposeful design)
-- ![](images/pbi_lineage.png)
+- Data model provides many ways to explore the dataset
+- We can create custom dashboards linked to the same underlying dataset ![](images/pbi_lineage.png)
 
 ## Downsides
 
@@ -134,5 +133,3 @@ Source = Table.Combine({overton_hist, overton_current}),
 ## Demo
 
 <iframe title="oa_daily" width="1024" height="1060" src="https://app.powerbi.com/view?r=eyJrIjoiODBhY2NjNDAtZDI5ZC00NWU2LTg0NDAtZDgzNGQ4NDk3MDM1IiwidCI6IjQ2MmE5YzljLTJkYTYtNGJmYi1iMzE4LTBmODMwNDNmZTQ5YiIsImMiOjh9&pageName=ReportSection4805b74ddd2ca2701890" frameborder="0" allowFullScreen="true"></iframe>
-
-## Questions?
