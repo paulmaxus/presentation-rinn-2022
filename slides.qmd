@@ -68,9 +68,9 @@ parameters:
 - filters: *ror*, *concept.id*, ...
 - group_by: *oa_status*, *publication_year*, ...
 
----
-
+::: {.fragment}
 ![](images/oa_status.png)
+:::
 
 ## M
 
@@ -93,11 +93,11 @@ GetOAStats = (year as text, rors as list) =>
 
 ![](images/overton.png)
 
----
-
+::: {.fragment}
 issue: rate limits
 
 - possible solution: __snapshots__
+:::
 
 ## M
 
@@ -122,9 +122,9 @@ Source = Table.Combine({overton_hist, overton_current}),
 - inefficient (data is overwritten every time)
 - Python scripts only available when using a gateway
 - however: public reports can't run Python scripts anyways
-- https://realpython.com/power-bi-python/
+- <https://realpython.com/power-bi-python/>
 
-## Open RI
+## Open data &rarr; Open RI
 
 - sharing ideas, methods, code
 - sharing infrastructure, e.g. Airflow instance
