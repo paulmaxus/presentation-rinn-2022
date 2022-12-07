@@ -69,7 +69,8 @@ parameters:
 - group_by: *oa_status*, *publication_year*, ...
 
 ::: {.fragment}
-![](images/oa_status.png)
+<!-- ![](images/oa_status.png) -->
+<img src="images/oa_status.png" height="350"/>
 :::
 
 ## M
