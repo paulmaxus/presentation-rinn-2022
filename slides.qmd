@@ -72,7 +72,7 @@ parameters:
 
 ![](images/oa_status.png)
 
-## DAX
+## M
 
 ```{.dax}
 GetOAStats = (year as text, rors as list) =>
@@ -99,7 +99,7 @@ issue: rate limits
 
 - possible solution: __snapshots__
 
-## DAX
+## M
 
 - source1 (history): snapshot of previous years (*https://vunl.sharepoint.com/sites/...*)
 
