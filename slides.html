@@ -439,11 +439,10 @@ Max Paulus, RI@VU
 <li class="fragment">filters: <em>ror</em>, <em>concept.id</em>, …</li>
 <li class="fragment">group_by: <em>oa_status</em>, <em>publication_year</em>, …</li>
 </ul>
+<div class="fragment">
+<p><img data-src="images/oa_status.png"></p>
+</div>
 </section>
-<section class="slide level2">
-
-
-<img data-src="images/oa_status.png" class="r-stretch"></section>
 <section id="m" class="slide level2">
 <h2>M</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource dax number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>GetOAStats = (year as text, rors as list) =&gt;</span>
@@ -462,13 +461,12 @@ Max Paulus, RI@VU
 <section id="data-source-2-overton" class="slide level2">
 <h2>Data source 2: Overton</h2>
 
-<img data-src="images/overton.png" class="r-stretch"></section>
-<section class="slide level2">
-
+<img data-src="images/overton.png" class="r-stretch"><div class="fragment">
 <p>issue: rate limits</p>
 <ul>
 <li class="fragment">possible solution: <strong>snapshots</strong></li>
 </ul>
+</div>
 </section>
 <section id="m-1" class="slide level2">
 <h2>M</h2>
@@ -494,11 +492,11 @@ Max Paulus, RI@VU
 <li class="fragment">inefficient (data is overwritten every time)</li>
 <li class="fragment">Python scripts only available when using a gateway</li>
 <li class="fragment">however: public reports can’t run Python scripts anyways</li>
-<li class="fragment">https://realpython.com/power-bi-python/</li>
+<li class="fragment"><a href="https://realpython.com/power-bi-python/" class="uri">https://realpython.com/power-bi-python/</a></li>
 </ul>
 </section>
-<section id="open-ri" class="slide level2">
-<h2>Open RI</h2>
+<section id="open-data-open-ri" class="slide level2">
+<h2>Open data → Open RI</h2>
 <ul>
 <li class="fragment">sharing ideas, methods, code</li>
 <li class="fragment">sharing infrastructure, e.g.&nbsp;Airflow instance</li>
